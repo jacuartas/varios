@@ -11,8 +11,7 @@ Buttons:
     q           - salir(quit)
     space bar   - almacena el snapshot
     
-Ejecute este archivo en python3
-    
+Ejecute este archivo en python3 
   
 """
 
@@ -65,10 +64,11 @@ def save_snaps(width=0, height=0, name="imagen", folder=".", raspi=False):
     h       = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
 
     fileName    = "%s/%s_%d_%d_" %(folder, name, w, h)
-    # Captura imagenes del video(fotograma) es decir, realiza un snapshot y se almacena  cada que se presiona la tecla spacebar(barra espaciadora) o sale cuando se presiona el boton q
+    # Captura imagenes del video(fotograma) es decir, realiza un snapshot y se almacena  cada que se presiona la tecla spacebar(barra espaciadora).
+    # Termina procedimiento cuando  se presiona la tecla q(quit o salir)
     while True:
         ret, frame = cap.read()
-
+	# Despliega la imagen en una ventana
         cv2.imshow('camera', frame)
 
         key = cv2.waitKey(1) & 0xFF
@@ -76,6 +76,7 @@ def save_snaps(width=0, height=0, name="imagen", folder=".", raspi=False):
             break
         if key == ord(' '):
             print("Saving image ", nSnap)
+	# Graba la imagen
             cv2.imwrite("%s%d.jpg"%(fileName, nSnap), frame)
             nSnap += 1
 
@@ -86,13 +87,13 @@ def save_snaps(width=0, height=0, name="imagen", folder=".", raspi=False):
 
 
 def main():
-    # ---- DEFAULT VALUES ---
+    # ---- VALORES POR DEFECTO ---
     SAVE_FOLDER = "./imagenes"
     FILE_NAME = "imagen"
     FRAME_WIDTH = 0
     FRAME_HEIGHT = 0
 
-    # ----------- PARSE THE INPUTS -----------------
+    # ----------- PARÁMETROS DE ENTRADA -----------------
     parser = argparse.ArgumentParser(
         description="Almaceno los snapshot de la camera. \n q para salir \n spacebar para gravar el snapshot")
     parser.add_argument("--folder", default=SAVE_FOLDER, help="Ubicación donde se crea la carpeta (por defecto: ubicación actual)")
