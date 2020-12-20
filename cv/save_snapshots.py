@@ -95,7 +95,7 @@ def main():
 
     # ----------- PARÁMETROS DE ENTRADA -----------------
     parser = argparse.ArgumentParser(
-        description="Almaceno los snapshot de la camera. \n q para salir \n spacebar para gravar el snapshot")
+        description="Almaceno los snapshot de la camera. \n q para salir \n spacebar para grabar el snapshot")
     parser.add_argument("--folder", default=SAVE_FOLDER, help="Ubicación donde se crea la carpeta (por defecto: ubicación actual)")
     parser.add_argument("--name", default=FILE_NAME, help="Nombre del archivo imagen (por defecto: imagenCap)")
     parser.add_argument("--dwidth", default=FRAME_WIDTH, type=int, help="<width> px (por defecto la entregada por la cámara)")
