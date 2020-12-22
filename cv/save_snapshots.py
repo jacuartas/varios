@@ -1,5 +1,5 @@
 """
-Almacena una serie de snapshots con la camara activa actual como snapshot_<width>_<height>_<nnn>.jpg
+Almacena una serie de snapshots con la camara activa actual como imagen_<width>_<height>_<nnn>.jpg
 
 Arguments:
     --f <output folder>     por defecto: folder por defecto
