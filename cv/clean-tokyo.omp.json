@@ -75,11 +75,14 @@
         },
         {
           "properties": {
-            "cache_duration": "none"
+            "cache_duration": "none",
+            "charged_icon": "\ue22f",
+            "charging_icon": "\ue235",
+            "discharging_icon": "\ue234"
           },
           "leading_diamond": "\ue0b2",
           "trailing_diamond": "\ue0b0",
-          "template": " \ue266 RAM: {{ round ((div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0)) 1 }}/{{ round ((div .PhysicalTotalMemory 1073741824.0)) 1 }}GB | \uf2db CPU: {{ round .PhysicalPercentUsed .Precision }}% | \uf0a0 Disk: {{ round .PhysicalPercentUsed 1 }}% ",
+          "template": " \ue266 RAM: {{ round ((div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0)) 1 }}/{{ round ((div .PhysicalTotalMemory 1073741824.0)) 1 }}GB | \uf2db CPU: {{ round .PhysicalPercentUsed .Precision }}% | \uf0a0 Disk: {{ round .PhysicalPercentUsed 1 }}%{{ if not .Error }} | {{ .Icon }}{{ .Percentage }}%{{ end }} ",
           "foreground": "p:white",
           "background": "p:steel-blue",
           "type": "sysinfo",
@@ -188,6 +191,20 @@
       "type": "prompt",
       "alignment": "left",
       "segments": [
+        {
+          "properties": {
+            "cache_duration": "none",
+            "style": "austin",
+            "threshold": 500
+          },
+          "leading_diamond": "\ue0b2",
+          "trailing_diamond": "<transparent,p:powder-blue>\ue0b2</>",
+          "template": " \ufa1e {{ .FormattedMs }} ",
+          "foreground": "p:midnight",
+          "background": "p:powder-blue",
+          "type": "executiontime",
+          "style": "diamond"
+        },
         {
           "properties": {
             "cache_duration": "none",
