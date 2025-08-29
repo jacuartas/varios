@@ -75,18 +75,35 @@
         },
         {
           "properties": {
-            "cache_duration": "none",
-            "charged_icon": "\ue22f",
-            "charging_icon": "\ue235",
-            "discharging_icon": "\ue234"
+            "cache_duration": "none"
           },
           "leading_diamond": "\ue0b2",
-          "trailing_diamond": "\ue0b0",
-          "template": " \ue266 RAM: {{ round ((div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0)) 1 }}/{{ round ((div .PhysicalTotalMemory 1073741824.0)) 1 }}GB | \uf2db CPU: {{ round .PhysicalPercentUsed .Precision }}% | \uf0a0 Disk: {{ round .PhysicalPercentUsed 1 }}%{{ if not .Error }} | {{ .Icon }}{{ .Percentage }}%{{ end }} ",
+          "trailing_diamond": "<transparent,p:steel-blue>\ue0b2</>",
+          "template": " \ue266 RAM: {{ round ((div ((sub .PhysicalTotalMemory .PhysicalAvailableMemory)|float64) 1073741824.0)) 1 }}/{{ round ((div .PhysicalTotalMemory 1073741824.0)) 1 }}GB | \uf2db CPU: {{ round .PhysicalPercentUsed .Precision }}% | \uf0a0 Disk: {{ round .PhysicalPercentUsed 1 }}% ",
           "foreground": "p:white",
           "background": "p:steel-blue",
           "type": "sysinfo",
           "style": "diamond"
+        },
+        {
+          "properties": {
+            "cache_duration": "none",
+            "charged_icon": "\ue22f ",
+            "charging_icon": "\ue235 ",
+            "discharging_icon": "\ue234 "
+          },
+          "leading_diamond": "\ue0b2",
+          "trailing_diamond": "\ue0b0",
+          "template": " {{ if not .Error }}{{ .Icon }}{{ .Percentage }}%{{ end }} ",
+          "foreground": "p:white",
+          "background": "p:steel-blue",
+          "type": "battery",
+          "style": "diamond",
+          "background_templates": [
+            "{{if eq \"Charging\" .State.String}}p:cyan{{end}}",
+            "{{if eq \"Discharging\" .State.String}}p:steel-blue{{end}}",
+            "{{if eq \"Full\" .State.String}}p:steel-blue{{end}}"
+          ]
         }
       ],
       "newline": true
